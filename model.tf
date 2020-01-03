@@ -30,3 +30,15 @@ resource "okta_user_schema" "crn_extension" {
   master = "PROFILE_MASTER"
   depends_on = [okta_user_schema.dob_extension]
 }
+
+resource "okta_auth_server" "demonstration_service" {
+   audiences = ["demo.local"]
+   description = "Authorization service as code."
+   name = "Demonstration Service"
+} 
+
+resource "okta_auth_server_scope" "demonstration_perfrom" { 
+   description = "Perform a demonstration"
+   name = "demonstration:perform"
+   auth_server_id = "${okta_auth_server.demonstration_service.id}"
+}
