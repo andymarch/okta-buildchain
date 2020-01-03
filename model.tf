@@ -7,9 +7,9 @@ data "okta_group" "all" {
 }
 
 provider "okta" { 
-    org_name = "${var.org_name}"
-    base_url = "${var.base_url}"
-    api_token = "${var.api_token}"
+    org_name = var.org_name
+    base_url = var.base_url
+    api_token = var.api_token
 }
 
 //extension to schema must be created one at a time, use depends_on to order the
@@ -28,5 +28,5 @@ resource "okta_user_schema" "crn_extension" {
   required = true
   type   = "string"
   master = "PROFILE_MASTER"
-  depends_on = ["okta_user_schema.dob_extension"]
+  depends_on = [okta_user_schema.dob_extension]
 }
