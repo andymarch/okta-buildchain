@@ -40,5 +40,11 @@ resource "okta_auth_server" "demonstration_service" {
 resource "okta_auth_server_scope" "demonstration_perfrom" { 
    description = "Perform a demonstration"
    name = "demonstration:perform"
-   auth_server_id = "${okta_auth_server.demonstration_service.id}"
+   auth_server_id = okta_auth_server.demonstration_service.id
+}
+
+resource "okta_auth_server_scope" "demonstration_complete" { 
+   description = "Complete a demonstration"
+   name = "demonstration:complete"
+   auth_server_id = okta_auth_server.demonstration_service.id
 }
