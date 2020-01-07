@@ -48,3 +48,11 @@ resource "okta_auth_server_scope" "demonstration_complete" {
    name = "demonstration:complete"
    auth_server_id = okta_auth_server.demonstration_service.id
 }
+
+resource "okta_app_oauth" "demo_client" {
+    label = "Demo Client"
+    type = "web"
+    grant_types = ["authorization_code"]
+    redirect_uris = ["http://localhost:8080/callback"]
+    response_types = ["code"]
+} 
